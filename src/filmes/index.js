@@ -1,7 +1,10 @@
-import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from "react";
+import { Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Detalhes from "../components/Detalhes";
 
 export default function Filmes({ data }) {
+  const [ visibleModal, setVisibleModal ] = useState(false);
+
   return (
     <View>
       <View style={ styles.card }>
@@ -12,11 +15,15 @@ export default function Filmes({ data }) {
         />
 
         <View style={ styles.areaBotao }>
-          <TouchableOpacity style={ styles.botao } onPress={ () => { } }>
+          <TouchableOpacity style={ styles.botao } onPress={ () => setVisibleModal(true) }>
             <Text style={ styles.botaoTexto }>LEIA MAIS</Text>
           </TouchableOpacity>
         </View>
       </View>
+
+      <Modal transparent={ true } animationType='slide' visible={ visibleModal }>
+        <Detalhes filme={ data } voltar={ () => setVisibleModal(false) } />
+      </Modal>
     </View>
   )
 }

@@ -28,6 +28,7 @@ export default function App() {
             data={ item }
           />
         }
+        contentContainerStyle={ { paddingBottom: 30 } }
       />
     </View>
   )
